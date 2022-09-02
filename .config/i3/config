@@ -160,7 +160,7 @@ bindsym $mod+r mode "resize"
 # bar configuration
 bar {
         position top
-        status_command /home/elliot/Documents/bumblebee-status/bumblebee-status \
+        status_command /home/$USER/Documents/bumblebee-status/bumblebee-status \
 		-m kernel cpu memory pamixer brightness disk  battery date time \
 		-p time.format="%H:%M:%S" \
 		-t dracula-powerline
