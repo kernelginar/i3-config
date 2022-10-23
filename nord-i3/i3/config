@@ -161,10 +161,10 @@ bindsym $mod+r mode "resize"
 # bar configuration
 bar {
         position top
-        status_command /home/$USER/Documents/other-repositories/bumblebee-status/bumblebee-status \
-		-m cpu memory disk battery pamixer brightness date time \
-		-p time.format="%H:%M:%S" memory.format={used}/{total} disk.format={used}/{size} \
-	        -t nord-powerline
+        status_command /home/$USER/.config/i3/bumblebee-status/bumblebee-status \
+		          -m cpu memory disk battery pamixer brightness date time \
+		          -p time.format="%H:%M:%S" memory.format={used}/{total} disk.format={used}/{size} \
+	            -t nord-powerline
 
 	workspace_min_width 100
 
