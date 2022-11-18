@@ -4,9 +4,9 @@ set $mod Mod4
 for_window [class="^.*"] border pixel 3
 
 # colors
-set $bg     #7aa2f7
-set $fg     #f8f8f2
-set $ia     #808080
+set $bg     #6272a4
+set $fg     #ECEFF4
+set $ia     #44475a
 
 # set some nice colors      border     background  text    indicator
 client.focused              $bg        $bg         $fg     $bg
@@ -17,14 +17,12 @@ client.background           $ia        $ia         $fg     $ia
 client.placeholder          $ia        $ia         $fg     $ia
 client.focused_tab_title    $ia        $ia         $fg     $ia
 
-font pango:JetBrains Mono 11
+font pango:JetBrains Mono, Font Awesome 12
 
-gaps inner 7
-gaps outer 7
+gaps inner 5
+gaps outer 5
 
 exec --no-startup-id dex --autostart --environment i3
-
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -86,21 +84,18 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -163,16 +158,20 @@ bindsym $mod+r mode "resize"
 # bar configuration
 bar {
         position top
-        status_command /home/$USER/Documents/other-repositories/bumblebee-status/bumblebee-status \
-		-m kernel cpu memory pamixer brightness disk  battery date time \
-		-p time.format="%H:%M:%S" \
-		-t dracula-powerline
+        status_command /home/$USER/.config/i3/bumblebee-status/bumblebee-status \
+		          -m cpu memory disk battery pamixer brightness date time \
+		          -p time.format="%H:%M:%S" date.format="%d/%m/%Y" memory.format={used}/{total} disk.format={used}/{size} \
+	                  -t dracula-powerline
+
+	workspace_min_width 100
+
+        workspace_buttons yes
 
         colors {
         background #282a36
         statusline #f8f8f2
-        separator #666666
-
+        separator  #bdc5c0
+        
         focused_workspace  #6272a4 #6272a4 #f8f8f2
         active_workspace   #282a36 #282a36 #f8f8f2
         inactive_workspace #282a36 #282a36 #f8f8f2
@@ -185,21 +184,21 @@ bar {
 ######################################################################
 
 
-###########
-# keybinds
-###########
+############
+# keybinds #
+############
 
-# start dmenu (a program launcher)
+# rofi
 bindsym $mod+d exec --no-startup-id rofi -show run
 
 # start a terminal
 bindsym $mod+Return exec alacritty
 
 # file manager
-bindsym $mod+e exec thunar
+bindsym $mod+e exec nemo
 
 # browser
-bindsym $mod+w exec firefox
+bindsym $mod+w exec brave --enable-features=WebUIDarkMode --force-dark-mode --force-device-scale-factor=1.20
 
 # screenshot
 bindsym $mod+s exec xfce4-screenshooter -f -s /home/$USER/Pictures
